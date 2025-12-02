@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
@@ -17,6 +18,7 @@ export default function Index() {
     address: '',
     description: ''
   });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,6 +52,61 @@ export default function Index() {
               <Icon name="Phone" size={16} className="mr-2" />
               +7 960 156-90-40
             </Button>
+            
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Icon name="Menu" size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col gap-6 mt-8">
+                  <a 
+                    href="#hero" 
+                    className="text-lg hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Главная
+                  </a>
+                  <a 
+                    href="#services" 
+                    className="text-lg hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Услуги
+                  </a>
+                  <a 
+                    href="#about" 
+                    className="text-lg hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    О компании
+                  </a>
+                  <a 
+                    href="#request" 
+                    className="text-lg hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Заявка
+                  </a>
+                  <a 
+                    href="#contacts" 
+                    className="text-lg hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Контакты
+                  </a>
+                  <div className="pt-4 border-t border-border">
+                    <Button className="w-full" asChild>
+                      <a href="tel:+79601569040">
+                        <Icon name="Phone" size={16} className="mr-2" />
+                        +7 960 156-90-40
+                      </a>
+                    </Button>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
